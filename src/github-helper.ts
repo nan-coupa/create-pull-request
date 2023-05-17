@@ -31,6 +31,7 @@ export class GitHubHelper {
 
   private parseRepository(repository: string): Repository {
     const [owner, repo] = repository.split('/')
+    core.info(`Working on ${repository}`)
     return {
       owner: owner,
       repo: repo
@@ -42,6 +43,9 @@ export class GitHubHelper {
     baseRepository: string,
     headRepository: string
   ): Promise<Pull> {
+    core.info(`Base repository: ${baseRepository}`)
+    core.info(`Head repository: ${headRepository}`)
+
     const [headOwner] = headRepository.split('/')
     const headBranch = `${headOwner}:${inputs.branch}`
     const headBranchFull = `${headRepository}:${inputs.branch}`

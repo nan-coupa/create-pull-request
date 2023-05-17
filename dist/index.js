@@ -1058,6 +1058,7 @@ class GitHubHelper {
     }
     parseRepository(repository) {
         const [owner, repo] = repository.split('/');
+        core.info(`Working on ${repository}`);
         return {
             owner: owner,
             repo: repo
@@ -1065,6 +1066,8 @@ class GitHubHelper {
     }
     createOrUpdate(inputs, baseRepository, headRepository) {
         return __awaiter(this, void 0, void 0, function* () {
+            core.info(`Base repository: ${baseRepository}`);
+            core.info(`Head repository: ${headRepository}`);
             const [headOwner] = headRepository.split('/');
             const headBranch = `${headOwner}:${inputs.branch}`;
             const headBranchFull = `${headRepository}:${inputs.branch}`;
