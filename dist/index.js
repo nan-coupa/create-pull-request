@@ -1074,6 +1074,10 @@ class GitHubHelper {
             // Try to create the pull request
             try {
                 core.info(`Attempting creation of pull request`);
+                core.info(`Head branch: ${headBranch}`);
+                core.info(`Base branch: ${inputs.base}`);
+                core.info(`Title: ${inputs.title}`);
+                core.info(`Body: ${inputs.body}`);
                 const { data: pull } = yield this.octokit.rest.pulls.create(Object.assign(Object.assign({}, this.parseRepository(baseRepository)), { title: inputs.title, head: headBranch, base: inputs.base, body: inputs.body, draft: inputs.draft }));
                 core.info(`Created pull request #${pull.number} (${headBranch} => ${inputs.base})`);
                 return {

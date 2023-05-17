@@ -53,6 +53,11 @@ export class GitHubHelper {
     // Try to create the pull request
     try {
       core.info(`Attempting creation of pull request`)
+      core.info(`Head branch: ${headBranch}`)
+      core.info(`Base branch: ${inputs.base}`)
+      core.info(`Title: ${inputs.title}`)
+      core.info(`Body: ${inputs.body}`)
+
       const {data: pull} = await this.octokit.rest.pulls.create({
         ...this.parseRepository(baseRepository),
         title: inputs.title,
